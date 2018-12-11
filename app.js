@@ -13,6 +13,10 @@ const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const apiRouter = require('./routes/api');
 
+// Import authentication middleware
+const authenticate = require('./lib/authenticate');
+
+
 // Instantiate express app
 const app = express();
 
@@ -28,6 +32,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(authenticate);
 
 // Register custom routes
 app.use('/', indexRouter);
