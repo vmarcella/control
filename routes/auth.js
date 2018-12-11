@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
             const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, tokenHeaders);
 
             // Create cookie with encrypted jwt token, and then send it to the user
-            res.cookie('control-auth', token, { maxAge: 60 * 24 * 60 * 60 * 1000, httpOnly: true });
+            res.cookie('controlAuth', token, { maxAge: 60 * 24 * 60 * 60 * 1000, httpOnly: true });
             return res.json({ success: 'Successfully created user and issued auth token' });
         })
         .catch(err => res.status(500).json({ err: 'Could not sign in to API' }));
@@ -49,7 +49,7 @@ router.put('/', (req, res) => {
                     const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, tokenHeaders);
 
                     // Create cookie with encrypted jwt token,  and then send it to the user
-                    res.cookie('control-auth', token, { maxAge: 60 * 24 * 60 * 60 * 1000, httpOnly: true });
+                    res.cookie('controlAuth', token, { maxAge: 60 * 24 * 60 * 60 * 1000, httpOnly: true });
                     return res.json({ success: 'Successfully signed in and issued auth token' });
                 }
                 return res.status(403).json({ err: 'Your username or password is incorrect' });
@@ -59,7 +59,7 @@ router.put('/', (req, res) => {
 
 // Sign the user out of the API
 router.delete('/', (req, res) => {
-    res.clearCookie('control-auth');
+    res.clearCookie('controlAuth');
     res.json({ success: 'Successfully signed out and removed your token' });
 });
 
