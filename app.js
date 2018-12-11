@@ -16,7 +16,6 @@ const apiRouter = require('./routes/api');
 // Import authentication middleware
 const authenticate = require('./lib/authenticate');
 
-
 // Instantiate express app
 const app = express();
 
@@ -33,6 +32,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// Check if user is authenticated
 app.use(authenticate);
 
 // Register custom routes
