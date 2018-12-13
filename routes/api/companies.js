@@ -2,6 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
+const employeesRouter = require('./employees');
+
 const Company = require('../../models/company');
 
 // Get all of the companies registered with the api
@@ -20,27 +22,28 @@ router.post('/', (req, res) => {
 });
 
 // Get a single companies information
-router.get('/:name', (req, res) => {
+router.get('/:companyName', (req, res) => {
     Company
-        .findOne({ name: req.params.name })
+        .findOne({ name: req.params.companyName })
         .then(company => res.json(company))
         .catch(err => res.json({ err: 'Couldn\t find the company you were looking for' }))
 });
 
 // Update a single companies information
-router.put('/:name', (req, res) => {
+router.put('/:companyName', (req, res) => {
     Company
-        .findOneAndUpdate({ name: req.params.name }, req.body)
+        .findOneAndUpdate({ name: req.params.companyName }, req.body)
         .then(company => res.json(company))
         .catch(err => res.json({ err: 'Couldn\'t find the company you were trying to update' }));
 });
 
-router.delete('/:name', (req, res) => {
+router.delete('/:companyName', (req, res) => {
     Company
-        .findOneAndDelete({ name: req.params.name })
+        .findOneAndDelete({ name: req.params.companyName })
         .then(company => res.json(company))
         .catch(err => res.json({ err: 'Couldn\'t find the company you were trying to delete' }));
 });
 
+router.use('/:companyName/employees', employeesRouter);
 
 module.exports = router;
