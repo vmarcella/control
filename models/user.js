@@ -31,9 +31,10 @@ const userSchema = new Schema({
 
     updatedAt: {
         type: Date,
-    }
+    },
 });
 
+// Pre save hook for saving users into our database
 userSchema.pre('save', function(next) {
     const user = this;
     const now = new Date();
@@ -57,6 +58,8 @@ userSchema.pre('save', function(next) {
     }
 });
 
+// Compare passwords between the one stored within our database and the one
+// supplied in by someone trying to authenticate into a pre existing account
 userSchema.methods.comparePassword = function(password, done) {
     bcrypt.compare(password, this.password, (err, isMatch) => {
         return done(err, isMatch);
