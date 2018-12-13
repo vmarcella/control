@@ -1,0 +1,80 @@
+body {
+    font-size: 12px;
+    @import url('https://fonts.googleapis.com/css?family=Roboto');
+    font-family: 'Roboto', sans-serif;
+}
+
+#navbarContainer {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+#docsHeader {
+    margin-top: 20px;
+}
+
+#docsHeader h1 {
+    font-size: 6em;
+}
+
+#docsHeader p {
+    font-size: 2em;
+}
+
+#docsBody {
+    margin-top: 20px;
+}
+
+#docsBody h1 {
+    font-size: 6em;
+}
+
+#docsBody ol,ul {
+    font-size: 1.25em;
+}
+
+#docsBody p {
+    font-size: 1.25em;
+}
+
+#docsBody li {
+    padding-top: 10px;
+}
+
+#docsBody table {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: left; 
+    border-radius: 4px;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+#docsBody pre {
+    padding: 10px;
+    border-radius: 4px;
+    border: 2px solid black;
+    font-size: 1.25em;
+}
+
+#indexHeader {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#indexHeader h1 {
+    font-size: 6em;
+}
+
+#indexHeader p {
+    font-size: 2em;
+}
+
+#indexBody {
+    margin-top: 20px;
+}
+
+#indexBody {
+    font-size: 1.5em;
+}
