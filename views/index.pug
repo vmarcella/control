@@ -1,5 +1,29 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    include includes/navbar 
+    div.container() 
+        div.row()
+            div.col-md-12.col-lg-12#indexHeader()
+                h1= title
+                p Welcome to #{title}
+            div.col-md-12.col-lg-12#indexBody()
+                h1() What is control?
+                p() control is an API dedicated towards making business management easier. Whether you're an employee or the founder of the company, managing your business operations
+                    | can be somewhat of a hassle, especially if not done programmatically. control aims to make this experience less of a hassle and provide the freedom
+                    | of allowing the end user to do whatever it is they'd like for their business with the data we provide.
+                h1() How does control work?
+                p() Control is a web api built on top of the express framework. control uses mongodb for fast document based database operations and scalability. 
+                    | All endpoints currently respond with json, allowing the user to decide what they're going to do with the data our API provides them.
+                h1() How do I get started?
+                p() Easy, just send a post request to our server with curl or any request making library like this
+                pre() curl --header "Content-Type: application/json" \
+                    | --request POST \
+                    | --data '{"username":"xyz","password":"xyz"}' \
+                    |  http://localhost:3000/auth
+                p() After sending that request, your response should include a success message and a cookie containing your authorization token
+                h1() Where can I find out more about how to use control?
+                p() On this website! There is a single page dedicated towards documentation that you can navigate to through the navbar
+                    | or you can get to it 
+                    a(href='/documentation') right here
+

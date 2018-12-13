@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    include includes/navbar
+    div.container()
+        div.row()
+            div.col-md-12.col-lg-12#docsHeader()
+                h1() Documentation 
+                p() Welcome to control API. With control API, you can interact with our endpoints to effectively help manage your business. While only being an API, we allow you to interact with our endpoints
+                    | in a way where you can create an App that interacts with our endpoints or simply just use a command line tool like curl to CRUD our available resources. However, all requests
+                    | coming through to our API must be authenticated through control API's auth endpoint first. If you don't know how to get started, don't worry, we'll help you.
+            div.col-md-12.col-lg-12#docsBody()    
+                include:markdown-it documentation.md
