@@ -19,6 +19,14 @@ describe('Companies', () => {
             .then((user) => {
                 console.log('deleted user');
             })
+            .catch(err => console.log(err))
+
+        Company
+            .findOneAndDelete({ name: 'Google' })
+            .then((company) => {
+                console.log('deleted google')
+            })
+            .catch(err => console.log(err))
     })
     it('should not be able to get any information about companies', (done) => {
         agent
@@ -66,13 +74,46 @@ describe('Companies', () => {
             .get('/api/v1/companies')
             .end((err, res) => {
                 res.should.have.status(200);
-                agent.should.have.cookie('controlAuth');
                 Company
                     .find()
                     .then((companies) => {
                         res.body.should.have.length(companies.length);
                         done();
-                    })
+                    });
+            });
+    });
+
+    it('should be able to create a company', (done) => {
+        agent
+            .post('/api/v1/companies')
+            .send({ name: 'Google', description: 'google' })
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.name.should.equal('Google');
+                res.body.description.should.equal('google');
+                done();
+            });
+    });
+
+    it('should be able to update a company', (done) => {
+        agent
+            .put('/api/v1/companies/Google')
+            .send({description: 'Gooogle'})
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.description.should.equal('Gooogle');
+                done();
             })
-    })
+    });
+
+    it('should delete a company', (done) => {
+        agent
+            .delete('/api/v1/companies/Google')
+            .send({name: 'Google'})
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.name.should.equal('Google')
+                done();
+            });
+    });
 });

@@ -32,7 +32,7 @@ router.get('/:companyName', (req, res) => {
 // Update a single companies information
 router.put('/:companyName', (req, res) => {
     Company
-        .findOneAndUpdate({ name: req.params.companyName }, req.body)
+        .findOneAndUpdate({ name: req.params.companyName }, req.body, { new: true })
         .then(company => res.json(company))
         .catch(err => res.json({ err: 'Couldn\'t find the company you were trying to update' }));
 });
